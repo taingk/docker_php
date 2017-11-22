@@ -1,0 +1,32 @@
+version: '2'
+services:
+    apache_simple:
+        build: ../build/.
+        container_name: apache_simple
+        restart: always
+        volumes:
+        - ../../app/:/var/www/html
+        links:
+        - mysql_simple
+        ports:
+        - 8080:80
+        privileged: true
+
+    mysql_simple:
+        image: mysql:latest
+        container_name: mysql_simple
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: app
+        privileged: true
+
+    phpmyadmin_simple:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin_simple
+        restart: always
+        ports:
+        - 8081:80
+        links:
+        - mysql_simple:db
+        privileged: true

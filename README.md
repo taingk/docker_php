@@ -112,6 +112,16 @@ make dump
 
 <br>
 
+- Restart apache
+
+<br>
+
+```
+make r_apache
+```
+
+<br>
+
 ### En local une fois docker lancé
 
 <br>

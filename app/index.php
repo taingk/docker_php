@@ -16,8 +16,8 @@ $uri = str_ireplace(DIRNAME, '', urldecode($uri[0]));
 
 $exploded = explode(DS, $uri);
 
-$c = (empty($exploded[1]))?"index":$exploded[1];
-$a = (empty($exploded[2]))?"index":$exploded[2];
+$c = (empty($exploded[1])) ? "index" : $exploded[1];
+$a = (empty($exploded[2])) ? "index" : $exploded[2];
 
 unset($exploded[0]);
 unset($exploded[1]);

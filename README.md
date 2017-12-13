@@ -112,6 +112,16 @@ make dump
 
 <br>
 
+- Restore la bdd
+
+<br>
+
+```
+make restore
+```
+
+<br>
+
 - Restart apache
 
 <br>

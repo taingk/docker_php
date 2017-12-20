@@ -1,7 +1,9 @@
 <?php 
 
 class IndexController {
-    public function indexAction() {
-        echo "Action par défaut de index";
+
+    public function indexAction($params) {
+        $v = new View("bootstrap", "bootstrap");
+         
     }
 }

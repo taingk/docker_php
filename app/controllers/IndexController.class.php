@@ -1,9 +1,13 @@
-<?php 
+<?php
 
-class IndexController {
 
-    public function indexAction($params) {
-        $v = new View("bootstrap", "bootstrap");
-         
-    }
+class IndexController{
+
+	public function indexAction($params){
+		$name = "Kevin";
+
+		$v = new View("default","front");
+		$v->assign("name", $name);
+	}
+
 }

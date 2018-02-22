@@ -1,17 +1,15 @@
 <?php
 
 class Users extends BaseSql {
-    private $id = null;
-    private $firstname;
-    private $lastname;
-    private $email;
-    private $pwd;
-    private $token;
-    private $age;
+    protected $id = null;
+    protected $firstname;
+    protected $lastname;
+    protected $email;
+    protected $pwd;
+    protected $token;
+    protected $age;
     
-    private $status;
-    private $date_inserted;
-    private $date_updated;
+    protected $status;
 
     public function __construct() {
         parent::__construct();
@@ -48,38 +46,6 @@ class Users extends BaseSql {
 
     public function setStatus($status) {
         $this->status = $status;
-    }
-
-    public function getId() {
-        return $this->id;
-    }
-
-    public function getFirstname() {
-        return $this->firstname;
-    }
-
-    public function getLastname() {
-        return $this->lastname;
-    }
-
-    public function getEmail() {
-        return $this->email;
-    }
-
-    public function getPwd() {
-        return $this->pwd;
-    }
-
-    public function getToken() {
-        return $this->token;
-    }
-
-    public function getAge() {
-        return $this->age;
-    }
-
-    public function getStatus() {
-        return $this->status;
     }
 }
 

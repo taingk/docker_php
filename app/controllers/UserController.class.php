@@ -16,6 +16,7 @@ class UserController{
 		$user->setPwd("motdepasse");
 		$user->setToken("token");
 		$user->setAge(22);
+		$user->setStatus(1);
 		$user->save();
 	}
 

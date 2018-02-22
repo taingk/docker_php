@@ -4,6 +4,8 @@
 
 	function myAutoloader($class) {
 		$class = $class .".class.php";
+
+		// Si notre classe existe
 		if ( file_exists("core/".$class) ) {
 			include "core/".$class;
 		} else if ( file_exists("models/".$class) ) {
@@ -11,6 +13,7 @@
 		} 
 	}
 
+	// Appel notre autoloader quand on essaie d'instancier un objet
 	spl_autoload_register('myAutoloader');
 
 	//http://localhost/3IW%20classe%202/user/add
@@ -18,19 +21,25 @@
 	//Récupérer add > définir dans une variable $a
 
 	// /3IW%20classe%202/user/add?id=2
+	// variable super globale, recupere l'uri
 	$uri = $_SERVER["REQUEST_URI"];
+	
+	// transforme en tableau en séparant grace a ?
 	$uri = explode("?", $uri);
-	$uri = str_ireplace(DIRNAME, "/", urldecode($uri[0]));
 
+	// on garde ce qu'il y a après le dossier racine
+	$uri = str_ireplace(DIRNAME, "/", urldecode($uri[0]));
 	// $uri -> user/modify/pseudonyme/3
-	// print_r($uri);
+
+	// Explode en séparant avec /
 	$uriExploded = explode(DS, $uri);
-	// unset($uriExploded[0]);
-	// $uriExploded = array_values($uriExploded);
-	// print_r($uriExploded);
+
+	unset($uriExploded[0]);
+	$uriExploded = array_values($uriExploded);
+	
 	//Condition ternaire pour affecter la chaine "index"
-	$c = (empty($uriExploded[1]))?"index":$uriExploded[1];
-	$a = (empty($uriExploded[2]))?"index":$uriExploded[2];
+	$c = empty( $uriExploded[0] ) ? "index" : $uriExploded[0];
+	$a = empty( $uriExploded[1] ) ? "index" : $uriExploded[1];
 
 	unset($uriExploded[0]);
 	unset($uriExploded[1]);
@@ -46,23 +55,24 @@
 	//Action : nameAction
 	$a = strtolower($a)."Action";
 
-	$params= [ "POST" => $_POST, "GET"=>$_GET, "URL"=>$uriExploded ];
-
-	
+	$params = [ "POST" => $_POST, "GET"=>$_GET, "URL"=>$uriExploded ];
 
 	//Est ce que le controller existe
-	if( file_exists("controllers/".$c.".class.php") ){
+	if ( file_exists("controllers/".$c.".class.php") ) {
 		include("controllers/".$c.".class.php");
-		if(class_exists($c)){
+
+		if ( class_exists($c) ) {
 			$objC = new $c();
-			if( method_exists($objC, $a) ){
-				$objC->$a($params);
-			}else{
+
+			if ( method_exists($objC, $a) ) {
+				$objC->$a( $params );
+
+			} else {
 				die("L'action ".$a." n'existe pas");
 			}
-		}else{
+		} else {
 			die("La classe ".$c." n'existe pas");
 		}
-	}else{
+	} else {
 		die("Le controller ".$c." n'existe pas");
 	}

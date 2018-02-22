@@ -12,6 +12,7 @@ class Users extends BaseSql {
     protected $status;
 
     public function __construct() {
+        // On instancie le parent 
         parent::__construct();
     }
 
@@ -20,14 +21,17 @@ class Users extends BaseSql {
     }
 
     public function setFirstname($firstname) {
+        // Kevin
         $this->firstname = ucfirst(strtolower(trim($firstname)));
     }
 
     public function setLastname($lastname) {
+        // TAING
         $this->lastname = strtoupper(trim($lastname));
     }
 
     public function setEmail($email) {
+        // minuscule
         $this->email = strtolower(trim($email));
     }
 

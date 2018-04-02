@@ -41,7 +41,7 @@ class BaseSql {
 
             // On recupere les clé de columns et les sépare par ',' et ':' 
             $usersColumn = implode(",", array_keys($this->columns));
-            $valuesColumn = implode(":", array_keys($this->columns));
+            $valuesColumn = implode(",:", array_keys($this->columns));
 
             $query = "INSERT INTO " . $this->table . " (" .  $usersColumn . ")" . " VALUES (:".$valuesColumn.")";
 

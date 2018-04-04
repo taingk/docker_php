@@ -28,11 +28,20 @@ class BaseSql {
     public function save() {
         // Clean $columns
         $this->setColumns();
-        print_r($this->columns);
         
         // Si un id est spécifié, c'est un update
         if ( $this->id ) {
+            $query = "UPDATE " . $this->table . " SET firstname = :firstname, lastname = :lastname, email = :email WHERE id = :id";
+            // Prepare et execute la requete 
+            $request = $this->pdo->prepare($query);
+            // alimenté par le tableau $columns
+            $request->execute(array(
+                ':firstname' => $this->columns['firstname'],
+                ':lastname' => $this->columns['lastname'], 
+                ':email' => $this->columns['email'],
+                ':id' => $this->columns['id']));
 
+            print_r($request->fetch());
             
         } else {
             // Sinon c'est un insert

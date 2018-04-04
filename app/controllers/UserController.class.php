@@ -26,7 +26,12 @@ class UserController{
 
 	public function modifyAction($params){
 		echo "Modification d'un utilisateur";
-		echo $params["URL"][0];
+		$user = new Users();
+		$user->setId(1);
+		$user->setFirstname("George");
+		$user->setLastname("Taing");
+		$user->setEmail("ktaing2@myges.fr");
+		$user->save();
 		
 	}
 }
